@@ -1,0 +1,60 @@
+@import "../../../theme.scss";
+
+:host {
+  display: flex;
+  justify-content: space-between;
+
+  height: 100%;
+  width: 90%;
+}
+
+.asp-info {
+  width: 300px;
+  padding: 1rem;
+  border-left: 1px solid white;
+
+  mat-list-item {
+    height: auto;
+
+    p {
+      white-space: normal;
+      font-size: 1, 2rem;
+      font-style: italic;
+      text-align: justify;
+    }
+  }
+}
+
+.register-form {
+  width: 700px;
+
+  mat-card {
+    mat-card-header {
+      display: flex;
+      justify-content: center;
+    }
+
+    mat-card-title {
+      font-size: 2rem;
+      color: $dark-accent-A200;
+    }
+  }
+
+  mat-card-actions {
+    button {
+        margin: auto;
+        width: 80%;
+    }
+  }
+
+  mat-grid-tile {
+    mat-form-field {
+      width: 100%;
+    }
+
+    h4 {
+        margin: 0;
+        padding-right: 1rem;
+    }
+  }
+}

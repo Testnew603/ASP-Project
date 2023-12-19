@@ -1,0 +1,11 @@
+<mat-toolbar color="primary"> 
+    <span class="spacer">ASP System</span>
+
+    <div class="user-info">
+        @if(loggedIn){
+            <div class="name">Hello {{name}} </div>
+        }
+        <button mat-raised-button color="accent" >Profile</button>
+        <button mat-raised-button color="warn" (click)="logout()" >Log Out</button>
+    </div>
+</mat-toolbar>
