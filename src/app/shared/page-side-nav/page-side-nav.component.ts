@@ -29,9 +29,11 @@ export class PageSideNavComponent {
       next: status => {
         if(status === "loggedIn") {
           _router.navigateByUrl("/profile")
-          let user = _apiService.StudentInfo;
-          if(user != null) {
-            if(user.role === "STUDENT") {
+          let student = this._apiService.StudentInfo!;
+          let admin = this._apiService.AdminInfo!;
+          let staff = this._apiService.StaffInfo!;
+          if(student != null || admin != null || staff != null) {
+            if(student.role === "STUDENT") {
               this.panelName = 'Student Panel';
               this.navItems = [
                 {value: 'ViewStudent', link: '/home'},
@@ -44,7 +46,7 @@ export class PageSideNavComponent {
           
         } else if(status == "loggedOff"){
           this.panelName = 'Auth Panel';
-            _router.navigateByUrl('/login');
+            this._router.navigateByUrl('/login');
             this.navItems = [];
         }
       }
