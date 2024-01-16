@@ -11,7 +11,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 export class LoginComponent {
   loginForm: FormGroup;
   hidePwdContent: boolean = true;
-
+  
   constructor(
     private _fb: FormBuilder,
     private _apiService: ApiService,
@@ -28,19 +28,21 @@ export class LoginComponent {
       email: this.loginForm.get('email')?.value,
       password: this.loginForm.get('password')?.value
     };
-    this._apiService.login(loginInfo).subscribe({
-      next: (res) => {
-        if(res === "not found"){
-          this._snackBar.open("credentials are invalid!", "OK")  
-        } else if(res === "unapproved"){
-          this._snackBar.open("Your account is not Approved by Admin!", "OK");
-        } else if(res === "blocked") {
-          this._snackBar.open("Your account is blocked contact Admin!", "OK");
-        } else {
-          localStorage.setItem('accessToken', res);
-          this._apiService.userStatus.next("loggedIn");
-        }        
-      },
-    });
+    
+        this._apiService.login(loginInfo).subscribe({
+          next: (res) => {
+            if (res == 'not found')
+            this._snackBar.open('Credential are invalid!', 'OK');
+          else if (res == 'unapproved')
+            this._snackBar.open('Your account is not Aprooved by Admin!', 'OK');
+            else if (res == 'blocked')
+            this._snackBar.open('Your account is BLOCKED. Please go to admin office to Unblock.', 'OK'); else {
+              localStorage.setItem('accessToken', res);                                           
+              
+              this._apiService.userStatus.next("loggedIn");
+            }        
+          },
+        });  
+
+    }
   }
-}

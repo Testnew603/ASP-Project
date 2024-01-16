@@ -28,15 +28,15 @@ export class PageSideNavComponent {
     _apiService.userStatus.subscribe({
       next: status => {
         if(status === "loggedIn") {
-          _router.navigateByUrl("/home")
+          _router.navigateByUrl("/profile")
           let user = _apiService.StudentInfo;
           if(user != null) {
-            if(user.type === "STUDENT") {
+            if(user.role === "STUDENT") {
               this.panelName = 'Student Panel';
               this.navItems = [
                 {value: 'ViewStudent', link: '/home'},
-                { value: 'ViewStaff', link: '' },
-                { value: 'View', link: '' }
+                { value: 'ViewStaff', link: '/home' },
+                { value: 'View', link: '/home' }
               ];
             }
 

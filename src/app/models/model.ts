@@ -1,3 +1,4 @@
+    // ---------------------------------STUDENT SECTION-----------------------------------------//
     export interface StudentDetails
     {
         id: number,
@@ -14,10 +15,127 @@
         password: string,
         profile: string,
         status: Status,
-        type: string,
+        role: string,
     }
 
-    export enum Status
-    {
+    export enum Status {    
         PENDING, ACTIVE, BLOCKED, PLACED, TERMINATED
     }
+
+// ---------------------------------ADMIN SECTION-----------------------------------------//
+    export interface Admin {
+        email: string;
+        role: string;
+        status: string;        
+    }
+
+// ---------------------------------ADVISOR SECTION-----------------------------------------//
+    export interface Advisor {
+        id: number;
+        firstName :string;
+        lastName :string;
+        birthDate :string;
+        gender :string;
+        email :string;
+        mobile :string;
+        qualification :string;
+        password :string;
+        profile :string;
+        documents :string;
+        domainId: number;
+        status: StaffStatus;
+        role: string;
+    }  
+    
+// ---------------------------------HR MANAGER SECTION-----------------------------------------//
+    export interface HRManager {
+        id: number;
+        firstName: string;
+        lastName: string;
+        birthDate: string;
+        gender: string;
+        email: string;
+        mobile: string;
+        qualification: string;
+        password: string;
+        profile: string;
+        documents: string;
+        status: StaffStatus;
+        role: string;
+    }
+
+// ---------------------------------MANAGER SECTION-----------------------------------------//
+    
+    export interface Manager {
+        id: number;
+        firstName: string;
+        lastName: string;
+        birthDate: string;
+        gender: string;
+        email: string;
+        mobile: string;
+        qualification: string;
+        password: string;
+        profile: string;
+        documents: string;
+        status: StaffStatus;
+        role: string;
+    }
+
+// ---------------------------------REVIEWER SECTION-----------------------------------------//
+
+    export interface Reviewer {
+       id: number;
+       firstName: string;
+       lastName: string;
+       gender: string;
+       email: string;
+       mobile: string;
+       password: string;
+       profile: string;
+       domainId: number;
+       status: StaffStatus;
+       role: string;
+    }
+
+// ---------------------------------TRAINER SECTION-----------------------------------------//
+
+    export interface Trainer {
+       id: number;
+       firstName: string;
+       lastName: string;
+       gender: string;
+       email: string;
+       mobile: string;
+       password: string;
+       profile: string;
+       specializedIn: SpecializedIn;
+       status: StaffStatus;
+       role: string;
+    }
+
+    // ---------------------------------PUBLIC SECTION-----------------------------------------//
+    export interface TokenData {
+        id: number;
+        firstName: string;
+        lastName: string;
+        birthDate: string;
+        email: string;
+        status: StaffStatus
+        role: string;
+    }
+
+    export interface ResponseMessages {
+        statusCode: number;
+        isSuccess: boolean;
+        result: any;
+      }
+
+    export enum StaffStatus{    
+        PENDING, ACTIVE, RESIGNED, BLOCKED
+    }
+
+    export enum SpecializedIn {       
+        ENGLISH, APTITUDE, REASONINGSKILL, GK, OTHERS
+    }
+

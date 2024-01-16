@@ -4,11 +4,20 @@ import { RouterOutlet } from '@angular/router';
 import { SharedModule } from './shared/shared.module';
 import { AuthModule } from './auth/auth.module';
 import { ApiService } from './shared/services/api.service';
+import { UsersModule } from './users/users.module';
+import { ActionsModule } from './actions/actions.module';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, RouterOutlet, SharedModule, AuthModule],
+  imports: [
+    CommonModule,
+    RouterOutlet,
+    SharedModule,
+    AuthModule,
+    UsersModule,
+    ActionsModule,
+  ],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
