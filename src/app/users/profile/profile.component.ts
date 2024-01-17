@@ -18,8 +18,8 @@ export class ProfileComponent {
   dataSource: TableElement[] = [];
 
   constructor(private _apiService: ApiService) { 
-    let admin = _apiService.AdminInfo!;
-    let staff = _apiService.StaffInfo!;
+    let admin = this._apiService.AdminInfo!;
+    let staff = this._apiService.StaffInfo!;
     let student = this._apiService.StudentInfo!;  
     let trainer = this._apiService.TrainerInfo!;  
 
@@ -85,7 +85,24 @@ export class ProfileComponent {
           console.error('Error fetching student data:', error);
         }
       );
-    } else if(trainer.role == "TRAINER") {
+    } else if(staff.role == "GENERALMANAGER") {
+      this._apiService.getGeneralManagerById(staff.id).subscribe(
+        (response) => {
+          const dob = new Date(response.birthDate);
+          this.dataSource = [
+            { name: "Id", value: response.id?.toString() || 'N/A' },
+            { name: "Name", value: `${response.firstName || 'N/A'} ${response.lastName || 'N/A'}` },
+            { name: "BirthDate", value: dob.toLocaleDateString() },
+            { name: "Email", value: `${response.email || 'N/A'}` },            
+            { name: "Qualification", value: `${response.qualification || 'N/A'}` },            
+            { name: "Status", value: `${StaffStatus[response.status] || 'N/A'}` }
+          ];                                        
+        },
+        (error) => {
+          console.error('Error fetching student data:', error);
+        }
+      );
+    }else if(trainer.role == "TRAINER") {
       this._apiService.getTrainerById(staff.id).subscribe(
         (response) => {          
           this.dataSource = [

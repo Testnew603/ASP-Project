@@ -6,6 +6,8 @@ import { AuthModule } from './auth/auth.module';
 import { ApiService } from './shared/services/api.service';
 import { UsersModule } from './users/users.module';
 import { ActionsModule } from './actions/actions.module';
+import { ADMINModule } from './admin/admin.module';
+import { PublicModule } from './public/public.module';
 
 @Component({
   selector: 'app-root',
@@ -16,6 +18,8 @@ import { ActionsModule } from './actions/actions.module';
     SharedModule,
     AuthModule,
     UsersModule,
+    ADMINModule,
+    PublicModule,
     ActionsModule,
   ],
   templateUrl: './app.component.html',

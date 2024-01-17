@@ -4,11 +4,12 @@ import { ApiService } from '../../shared/services/api.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
-  selector: 'login',
-  templateUrl: './login.component.html',
-  styleUrl: './login.component.scss'
+  selector: 'hr-login',
+  templateUrl: './hr-login.component.html',
+  styleUrl: './hr-login.component.scss'
 })
-export class LoginComponent {
+export class HrLoginComponent {
+
   loginForm: FormGroup;
   hidePwdContent: boolean = true;
   
@@ -21,14 +22,14 @@ export class LoginComponent {
       email: _fb.control('', [Validators.required]),
       password: _fb.control('', [Validators.required]),
     })
-  } 
+  }
 
-  AdminLogin() {
+  HRManagerLogin() {
     let loginInfo = {
       email: this.loginForm.get('email')?.value,
       password: this.loginForm.get('password')?.value
     };      
-      this._apiService.AdminLogin(loginInfo).subscribe({
+      this._apiService.HRManagerLogin(loginInfo).subscribe({
         next: (res) => {
           if (res == 'not found')
           this._snackBar.open('Credential are invalid!', 'OK');
@@ -42,6 +43,6 @@ export class LoginComponent {
           }        
         },
       });  
-    } 
+    }
 
-  }
+}

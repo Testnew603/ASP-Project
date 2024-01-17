@@ -4,11 +4,12 @@ import { ApiService } from '../../shared/services/api.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
-  selector: 'login',
-  templateUrl: './login.component.html',
-  styleUrl: './login.component.scss'
+  selector: 'trainer-login',
+  templateUrl: './trainer-login.component.html',
+  styleUrl: './trainer-login.component.scss'
 })
-export class LoginComponent {
+export class TrainerLoginComponent {
+
   loginForm: FormGroup;
   hidePwdContent: boolean = true;
   
@@ -21,14 +22,14 @@ export class LoginComponent {
       email: _fb.control('', [Validators.required]),
       password: _fb.control('', [Validators.required]),
     })
-  } 
+  }
 
-  AdminLogin() {
+  TrainerLogin() {
     let loginInfo = {
       email: this.loginForm.get('email')?.value,
       password: this.loginForm.get('password')?.value
     };      
-      this._apiService.AdminLogin(loginInfo).subscribe({
+      this._apiService.TrainerLogin(loginInfo).subscribe({
         next: (res) => {
           if (res == 'not found')
           this._snackBar.open('Credential are invalid!', 'OK');
@@ -42,6 +43,6 @@ export class LoginComponent {
           }        
         },
       });  
-    } 
+    }
 
-  }
+}

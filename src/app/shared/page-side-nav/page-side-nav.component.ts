@@ -1,6 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../services/api.service';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 export interface NavigationItem {
   value: string;
@@ -12,13 +12,18 @@ export interface NavigationItem {
   templateUrl: './page-side-nav.component.html',
   styleUrl: './page-side-nav.component.scss'
 })
-export class PageSideNavComponent {
+export class PageSideNavComponent implements OnInit {
+
   panelName: string = '';
   navItems: NavigationItem[] = [];
 
+  ngOnInit(): void {
+    
+  }
   constructor(
     private _apiService: ApiService,
-    private _router: Router
+    private _router: Router,
+    private _act: ActivatedRoute
     ) {
     this.navItems = [
       {value: 'View Students', link: 'view-students'},
@@ -38,16 +43,51 @@ export class PageSideNavComponent {
               this.navItems = [
                 {value: 'ViewStudent', link: '/home'},
                 { value: 'ViewStaff', link: '/home' },
+              ];
+            } else if(staff.role === "ADVISOR") {
+              this.panelName = 'Advisor Panel';
+              this.navItems = [
+                {value: 'ViewStudent', link: '/home'},
+                { value: 'ViewStaff', link: '/home' },
+              ];
+            } else if(staff.role === "HRMANAGER") {
+              this.panelName = 'HR-Manager Panel';
+              this.navItems = [
+                {value: 'ViewStudent', link: '/home'},
+                { value: 'ViewStaff', link: '/home' },
+              ];
+            } else if(staff.role === "GENERALMANAGER") {
+              this.panelName = 'Manager Panel';
+              this.navItems = [
+                {value: 'ViewStudent', link: '/home'},
+                { value: 'ViewStaff', link: '/home' },
+              ];
+            }else if(staff.role === "TRAINER") {
+              this.panelName = 'Trainer Panel';
+              this.navItems = [
+                {value: 'ViewStudent', link: '/home'},
+                { value: 'ViewStaff', link: '/home' },
+              ];
+            } else if(staff.role === "REVIEWER") {
+              this.panelName = 'Reviewer Panel';
+              this.navItems = [
+                {value: 'ViewStudent', link: '/home'},
+                { value: 'ViewStaff', link: '/home' },                
+              ];
+            } else {
+              this.panelName = 'Admin Panel';
+              this.navItems = [
+                {value: 'ViewStudents', link: '/view-students'},
+                { value: 'ViewAdvisors', link: '/view-advisors' },
                 { value: 'View', link: '/home' }
               ];
             }
-
           }
           
         } else if(status == "loggedOff"){
           this.panelName = 'Auth Panel';
-            this._router.navigateByUrl('/login');
-            this.navItems = [];
+            //this._router.navigateByUrl('/student-login');                       
+          this.navItems = [];
         }
       }
     })

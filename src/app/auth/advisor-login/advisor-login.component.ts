@@ -4,11 +4,12 @@ import { ApiService } from '../../shared/services/api.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
-  selector: 'login',
-  templateUrl: './login.component.html',
-  styleUrl: './login.component.scss'
+  selector: 'advisor-login',
+  templateUrl: './advisor-login.component.html',
+  styleUrl: './advisor-login.component.scss'
 })
-export class LoginComponent {
+export class AdvisorLoginComponent {
+
   loginForm: FormGroup;
   hidePwdContent: boolean = true;
   
@@ -21,27 +22,28 @@ export class LoginComponent {
       email: _fb.control('', [Validators.required]),
       password: _fb.control('', [Validators.required]),
     })
-  } 
+  }
 
-  AdminLogin() {
+  AdvisorLogin() {
     let loginInfo = {
       email: this.loginForm.get('email')?.value,
       password: this.loginForm.get('password')?.value
     };      
-      this._apiService.AdminLogin(loginInfo).subscribe({
+      this._apiService.AdvisorLogin(loginInfo).subscribe({
         next: (res) => {
           if (res == 'not found')
           this._snackBar.open('Credential are invalid!', 'OK');
         else if (res == 'unapproved')
           this._snackBar.open('Your account is not Aprooved by Admin!', 'OK');
           else if (res == 'blocked')
-          this._snackBar.open('Your account is BLOCKED. Please go to admin office to Unblock.', 'OK'); else {
+          this._snackBar.open('Your account is BLOCKED. Please go to admin office to Unblock.', 'OK');
+        else {
             localStorage.setItem('accessToken', res);                                           
             
             this._apiService.userStatus.next("loggedIn");
           }        
         },
       });  
-    } 
+    }
 
-  }
+}

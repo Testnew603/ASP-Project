@@ -31,18 +31,90 @@ export class ApiService {
     return throwError('Something bad happened; please try again later.');
   }
 
-  // ---------------------------------LOGIN SECTION-----------------------------------------//
-
-  login(info: any) {
+  // ---------------------------------LOGIN SECTION-----------------------------------------//  
+  AdminLogin(info: any) {
     let params = new HttpParams()
     .append('email', info.email)
     .append('password', info.password);
     
-    return this.http.get(this.baseUrl + 'Login/AllLoginUser', {
+    return this.http.get(this.baseUrl + 'Login/AdminLogin', {
       params: params,
       responseType: 'text'            
     });  
   }
+
+  StudentLogin(info: any) {
+    let params = new HttpParams()
+    .append('email', info.email)
+    .append('password', info.password);
+    
+    return this.http.get(this.baseUrl + 'Login/StudentLogin', {
+      params: params,
+      responseType: 'text'            
+    });  
+  }
+
+  GeneralManagerLogin(info: any) {
+    let params = new HttpParams()
+    .append('email', info.email)
+    .append('password', info.password);
+    
+    return this.http.get(this.baseUrl + 'Login/GeneralManagerLogin', {
+      params: params,
+      responseType: 'text'            
+    });  
+  }
+
+  HRManagerLogin(info: any) {
+    let params = new HttpParams()
+    .append('email', info.email)
+    .append('password', info.password);
+    
+    return this.http.get(this.baseUrl + 'Login/HRManagerLogin', {
+      params: params,
+      responseType: 'text'            
+    });  
+  }
+
+  AdvisorLogin(info: any) {
+    let params = new HttpParams()
+    .append('email', info.email)
+    .append('password', info.password);
+    
+    return this.http.get(this.baseUrl + 'Login/AdvisorLogin', {
+      params: params,
+      responseType: 'text'            
+    });  
+  }
+
+  ReviewerLogin(info: any) {
+    let params = new HttpParams()
+    .append('email', info.email)
+    .append('password', info.password);
+    
+    return this.http.get(this.baseUrl + 'Login/ReviewerLogin', {
+      params: params,
+      responseType: 'text'            
+    });  
+  }
+
+  TrainerLogin(info: any) {
+    let params = new HttpParams()
+    .append('email', info.email)
+    .append('password', info.password);
+    
+    return this.http.get(this.baseUrl + 'Login/TrainerLogin', {
+      params: params,
+      responseType: 'text'            
+    });  
+  }
+
+  
+
+
+
+
+
 
   isLoggedIn(): boolean {
     if(
@@ -177,6 +249,16 @@ export class ApiService {
     let params = new HttpParams().append('id', String(id));
 
     return this.http.get<any>(`${this.baseUrl}Reviwer/getreviewerbyid`, { params: params })
+      .pipe(
+        catchError(this.handleError)
+      );
+  }
+
+  // get general manager by ID
+  getGeneralManagerById(id: number): Observable<any> {
+    let params = new HttpParams().append('id', String(id));
+
+    return this.http.get<any>(`${this.baseUrl}GeneralManager/getmanagerbyid`, { params: params })
       .pipe(
         catchError(this.handleError)
       );
