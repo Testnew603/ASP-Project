@@ -1,1 +1,17 @@
-<p>view-students works!</p>
+<mat-card>
+  <mat-card-header>
+    <h1>All Students</h1>
+  </mat-card-header>   
+  </mat-card>
+
+  <mat-card class="mat-elevation-z0"> 
+    <mat-card-content>
+      <button mat-raised-button color="accent" (click)="addstudent()">
+        <mat-icon>add</mat-icon>
+        Add Student
+      </button>
+    </mat-card-content>
+  </mat-card>
+
+<page-table [columns]="columns" [dataSource]="students" [domains]="domains" ></page-table>
+    

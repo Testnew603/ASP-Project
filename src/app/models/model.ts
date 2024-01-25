@@ -12,7 +12,7 @@
         qualification: string,
         documents: string,
         domainId: string,
-        password: string,
+        password: '',
         profile: string,
         status: Status,
         role: string,
@@ -129,6 +129,12 @@
         statusCode: number;
         isSuccess: boolean;
         result: any;
+      }
+
+      export interface Domain {
+        id: number;
+        mainDomain: string;
+        subDomain: string;
       }
 
     export enum StaffStatus{    

@@ -2,7 +2,7 @@ import { HttpClient, HttpErrorResponse, HttpParams } from '@angular/common/http'
 import { Injectable } from '@angular/core';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { Observable, Subject, catchError, map, throwError } from 'rxjs';
-import { Admin, Advisor, SpecializedIn, StaffStatus, Status, StudentDetails, TokenData, Trainer } from '../../models/model';
+import { Admin, Advisor, Domain, SpecializedIn, StaffStatus, Status, StudentDetails, TokenData, Trainer } from '../../models/model';
 
 @Injectable({
   providedIn: 'root'
@@ -110,8 +110,22 @@ export class ApiService {
   }
 
   
+  // ---------------------------------PUBLIC SECTION-----------------------------------------//
 
+    // get domain by ID
+    getDomainById(id: number): Observable<any> {
+      let params = new HttpParams().append('id', String(id));
+  
+      return this.http.get<any>(`${this.baseUrl}Domain/GetDomainById`, { params: params })
+        .pipe(
+          catchError(this.handleError)
+        );
+    }
 
+    // get domain
+    GetDomainList() {
+      return this.http.get<Domain[]>(this.baseUrl + 'Domain/DomainList');
+    }
 
 
 
@@ -178,6 +192,11 @@ export class ApiService {
     }
     return studentDetails as StudentDetails;
   }
+
+  // get all students list
+  getStudentList() {
+    return this.http.get<StudentDetails[]>(this.baseUrl + 'Admin/StudentList');
+  } 
 
   // get student by ID
   getStudentById(id: number): Observable<any> {

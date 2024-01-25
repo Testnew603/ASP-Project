@@ -12,3 +12,4 @@ import { SharedModule } from '../shared/shared.module';
   imports: [SharedModule],
 })
 export class UsersModule { }
+ 

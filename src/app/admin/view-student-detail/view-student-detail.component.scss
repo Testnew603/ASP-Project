@@ -1,0 +1,102 @@
+
+.footer {
+    box-sizing: border-box;
+    padding: 1em; 
+}
+
+.container {
+    display: flex;
+    flex-direction: row;
+    gap: 10%; 
+    font-size: 1.5em;           
+
+    p {
+        font-size: 1.3rem;
+        letter-spacing: 3px;
+        padding: 10px;                
+    }
+}
+
+.container div p {
+    gap: 50px;
+} 
+
+.icon {
+    display: flex;
+    justify-content: center; 
+    align-items: center;
+
+    mat-card-title {
+        margin-top: 30px;
+    }
+
+    button {
+        margin: 0 5px;    
+        transform: scale(0.8);     
+    }
+}
+
+.profile-opacity {
+    opacity: 0.5;
+}
+
+.example-ripple-container {    
+    height: 230px;
+    img {
+    max-width: 100%;
+    height: 100%;    
+    }
+}
+
+.action-panel {
+    display: flex;
+    flex-direction: column;      
+    width: 70px;
+    height: 100%;
+    align-items: center;
+    justify-content: space-around;    
+    
+    .action-panel2 {
+        height: 20%;
+    }
+
+    button {           
+        transform: scale(0.8);             
+        margin: 0;
+    }
+
+    mat-card {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        height: 100%;        
+        padding: 30px;
+    }
+}
+
+.mat-grid-tile {
+    border: solid 2px #000;
+}
+
+.student-details {
+    width: 100%; 
+    height: 100%;
+    padding: 20px;     
+
+    mat-card-header {
+        justify-content: center;
+        padding: 15px;
+        mat-card-title h1 {
+        font-size: 2rem;
+        font-weight: 600;
+        font-style: italic;
+        letter-spacing: 3px;
+        display: flex;        
+        justify-content: center;
+    }
+}
+}
+
+
+
+
