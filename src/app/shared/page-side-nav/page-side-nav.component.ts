@@ -33,7 +33,7 @@ export class PageSideNavComponent implements OnInit {
     _apiService.userStatus.subscribe({
       next: status => {
         if(status === "loggedIn") {
-          _router.navigateByUrl("/profile")
+          _router.navigateByUrl("/view-students")
           let student = this._apiService.StudentInfo!;
           let admin = this._apiService.AdminInfo!;
           let staff = this._apiService.StaffInfo!;
@@ -77,9 +77,11 @@ export class PageSideNavComponent implements OnInit {
             } else {
               this.panelName = 'Admin Panel';
               this.navItems = [
-                {value: 'ViewStudents', link: '/view-students'},
-                { value: 'ViewAdvisors', link: '/view-advisors' },
-                { value: 'View', link: '/home' }
+                {value: 'View Students', link: '/view-students'},
+                { value: 'View Advisors', link: '/view-advisors' },
+                { value: 'View HR', link: '/view-hr' },
+                { value: 'View Trainers', link: '/view-trainer' },
+                { value: 'View Reviewers', link: '/view-reviewer' },
               ];
             }
           }

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { SharedModule } from '../../../shared/shared.module';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
@@ -37,6 +37,7 @@ export class DialogContentExampleDialog implements OnInit  {
   email = new FormControl('', [Validators.required, Validators.email]);
   studentForm: any;
   domainName: any[] = [];
+  selectedFile?: FileList;
   educationOption: string[] = [   
     "10 th Pass",
     "HSC",
@@ -61,7 +62,7 @@ export class DialogContentExampleDialog implements OnInit  {
       qualification: _fb.control('', [Validators.required]),
       domainId: _fb.control('', [Validators.required]),
       documents: _fb.control(''),
-      profile: _fb.control(''),    
+      // profile: _fb.control(''),    
     })    
   }
 
@@ -69,6 +70,12 @@ export class DialogContentExampleDialog implements OnInit  {
     this.domainList();    
     this.indivitualStudentDetails();
   }
+
+//   selectFile(event: any) { 
+//     this.selectedFile = event.target.files;
+//     console.log(this.selectedFile?.item(0)?.name);   
+    
+// }
 
   getErrorMessage() {
     if (this.email.hasError('required')) {
@@ -79,12 +86,15 @@ export class DialogContentExampleDialog implements OnInit  {
 
   updateData(): void {
     if(this.studentForm.valid) {
+      if(this.selectedFile) {
+        this.studentForm.documents = this.selectedFile?.item(0)?.name;
+      }
       let updatedData = this.studentForm.value;
+      console.log(updatedData);      
     }
-  }
+  } 
 
-  indivitualStudentDetails() {
-    
+  indivitualStudentDetails() {    
     var a = this._signalService.getData();
     if (typeof a === 'object' && a !== null) {
       this._apiService.getStudentById(a.id).subscribe(
@@ -120,5 +130,9 @@ export class DialogContentExampleDialog implements OnInit  {
       }
     )
   }
+
+  
+
+ 
   
 }

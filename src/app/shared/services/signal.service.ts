@@ -9,14 +9,30 @@ export class SignalService {
   constructor() { }
 
   message: string = "no signal";
-  private data = signal<StudentDetails | string>(this.message);
+  uploadprofile?: File;
+  private data = signal<any>(this.message);
+  private imagepath = signal<string>(this.message);
+  private file = signal<File>(this.uploadprofile!);
 
-  setData(student: StudentDetails) { 
-    this.data.set(student);
+  setData(userid: any) { 
+    this.data.set(userid);
+  }
+  getData() { 
+    return this.data();
   }
 
-  getData() {
-    return this.data();
+  setImagePath(profile: string) {
+    this.imagepath.set(profile);
+  } 
+  getImagePath() {
+    return this.imagepath();
+  }
+
+  setImageName(filename: File) {
+    this.file.set(filename)
+  }
+  getImageName() { 
+    return this.file();
   }
 
 }

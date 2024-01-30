@@ -1,1 +1,17 @@
-<p>view-advisors works!</p>
+<mat-card>
+    <mat-card-header>
+      <h1>All Advisor</h1>
+    </mat-card-header>   
+    </mat-card>
+  
+    <mat-card class="mat-elevation-z0"> 
+      <mat-card-content>
+        <button mat-raised-button color="accent" (click)="addadvisor()">
+          <mat-icon>add</mat-icon>
+          Add Advisor
+        </button>
+      </mat-card-content>
+    </mat-card>
+  
+  <page-table [columns]="columns" [dataSource]="advisor" [domains]="domains" ></page-table>
+      

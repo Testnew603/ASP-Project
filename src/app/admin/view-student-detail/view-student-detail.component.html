@@ -37,9 +37,14 @@
             <div class="example-ripple-container mat-elevation-z4" matRipple 
             [matRippleCentered]="centered" (click)="ImageOpacity()">
                 <img [src]="student.profile" alt="main_image" mat-card-lg-image
-                    [class.profile-opacity]="hideImage">
+                    [class.profile-opacity]="hideImage">                                        
             </div>
-            
+         
+            <div class="profile-change-button">
+                <button mat-flat-button color="accent" (click)="fileInput.click()">Change Profile</button>
+                <input hidden (change)="selectFile($event)" #fileInput type="file" id="file">
+            </div>
+            <input hidden type="file" id="file" />
             <mat-form-field style="margin-top: 20px;">
                 <mat-label> {{ getStudentStatus(student.status) }} </mat-label> 
                 <mat-select>

@@ -1,6 +1,5 @@
 import { Component, EventEmitter, Input, Output, ViewChild } from '@angular/core';
-import { Domain, Status, StudentDetails } from '../../models/model';
-import { ApiService } from '../services/api.service';
+import { Advisor, Domain, Status, StudentDetails } from '../../models/model';
 import { Router } from '@angular/router';
 import { SignalService } from '../services/signal.service';
 
@@ -17,7 +16,7 @@ export class PageTableComponent {
   columns: string[] = [];
 
   @Input()
-  dataSource: StudentDetails[] = [];
+  dataSource: any[] = [];
 
   @Input()
   domains: Domain[] = [];
@@ -31,6 +30,13 @@ export class PageTableComponent {
  
   selectStudent(student: StudentDetails) {
     this._signalService.setData(student); 
+    this._router.navigateByUrl('/student-detail');     
+  }
+
+  selectAdvisor(advisor: Advisor) {
+    this._signalService.setData(advisor); 
+    console.log(this._signalService.getData());
+    
     this._router.navigateByUrl('/student-detail');     
   }
  

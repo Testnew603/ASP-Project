@@ -6,6 +6,10 @@ import { ViewAdvisorsComponent } from './view-advisors/view-advisors.component';
 import { ViewStudentDetailComponent } from './view-student-detail/view-student-detail.component';
 import { ViewDocumentsComponent } from './view-documents/view-documents.component';
 import { EditStudentComponent } from './student/edit-student/edit-student.component';
+import { ImageViewerComponent } from './student/image-viewer/image-viewer.component';
+import { ViewHrComponent } from './hr/view-hr/view-hr.component';
+import { ViewTrainerComponent } from './trainer/view-trainer/view-trainer.component';
+import { ViewReviewerComponent } from './reviewer/view-reviewer/view-reviewer.component';
 
 
 @NgModule({
@@ -14,7 +18,11 @@ import { EditStudentComponent } from './student/edit-student/edit-student.compon
     ViewAdvisorsComponent,
     ViewStudentDetailComponent,
     ViewDocumentsComponent,
-    EditStudentComponent,    
+    EditStudentComponent,
+    ImageViewerComponent,
+    ViewHrComponent,
+    ViewTrainerComponent,
+    ViewReviewerComponent,    
   ],
   imports: [SharedModule],
 })

@@ -13,24 +13,34 @@ import { GManagerLoginComponent } from './auth/g-manager-login/g-manager-login.c
 import { ViewStudentDetailComponent } from './admin/view-student-detail/view-student-detail.component';
 import { ViewDocumentsComponent } from './admin/view-documents/view-documents.component';
 import { EditStudentComponent } from './admin/student/edit-student/edit-student.component';
+import { ViewHrComponent } from './admin/hr/view-hr/view-hr.component';
+import { ViewTrainerComponent } from './admin/trainer/view-trainer/view-trainer.component';
+import { ViewReviewerComponent } from './admin/reviewer/view-reviewer/view-reviewer.component';
 
 
 export const routes: Routes = [
     {path: "register", component: RegisterComponent},
-    {path: "student-login", component: StudentLoginComponent}, 
+
+    {path: "student-login", component: StudentLoginComponent},     
     {path: "advisor-login", component: AdvisorLoginComponent},
     {path: "hr-login", component: HrLoginComponent},
     {path: "reviewer-login", component: ReviewerLoginComponent},
     {path: "trainer-login", component: ReviewerLoginComponent},
     {path: "generalmanager-login", component: GManagerLoginComponent},
     {path: "login", component: LoginComponent},
+
     {path: "home", component: RegisterComponent},
     {path: "profile", component: ProfileComponent},
-    {path: "view-students", component: ViewStudentsComponent},
+    
+    {path: "view-students", component: ViewStudentsComponent}, 
+    {path: "view-advisors", component: ViewAdvisorsComponent},
+    {path: "view-hr", component: ViewHrComponent},
+    {path: "view-trainer", component: ViewTrainerComponent}, 
+    {path: "view-reviewer", component: ViewReviewerComponent},        
+    
     {path: "student-detail", component: ViewStudentDetailComponent},
     {path: "edit-detail", component: EditStudentComponent},
     {path: "view-documents", component: ViewDocumentsComponent},
-    {path: "view-advisors", component: ViewAdvisorsComponent},        
     {path: "**", component: PageNotFoundComponent},
 ];
 

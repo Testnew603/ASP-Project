@@ -86,18 +86,28 @@
         </mat-form-field>
       </mat-grid-tile>
 
-      <mat-grid-tile>
+      <!-- <mat-grid-tile>
         <mat-form-field color="accent" class="columns">
-            <mat-label>Upload document</mat-label>
-            <input matInput readonly formControlName="documents"/>
-            <button mat-icon-button matSuffix>
-                <mat-icon>attach_file</mat-icon>
-            </button>
+            <mat-label>Upload document</mat-label>                                   
+            <mat-form-field class="columns">
+              @if (selectedFile) {
+                <mat-label>{{selectedFile.item(0)?.name}}</mat-label>
+              } @else {                
+                  <mat-label #newFile>{{ this.studentForm.value.profile }}</mat-label>              
+              }
+                            
+              <input matInput disabled>
+              <button mat-icon-button matSuffix (click)="fileInput.click()">
+                  <mat-icon>attach_file</mat-icon>
+              </button>
+              <input hidden (change)="selectFile($event)" #fileInput type="file" id="file">
+          </mat-form-field> 
+                             
             <input hidden type="file" id="file" />
         </mat-form-field>
-    </mat-grid-tile>  
+    </mat-grid-tile>   -->
 
-    <mat-grid-tile>
+    <!-- <mat-grid-tile>
       <mat-form-field color="accent" class="columns">
           <mat-label>Upload profile</mat-label>
           <input matInput readonly formControlName="profile"/>
@@ -106,7 +116,7 @@
           </button>
           <input hidden type="file" id="file"/>
       </mat-form-field>
-  </mat-grid-tile>
+  </mat-grid-tile> -->
 
     </mat-grid-list>
   </mat-card> 
@@ -122,5 +132,5 @@
 </mat-dialog-content> 
 <mat-dialog-actions align="end">
   <button mat-button mat-dialog-close>Cancel</button>
-  <button mat-button mat-dialog-close>Update</button>
+  <button mat-button mat-dialog-close (click)="updateData()">Update</button>
 </mat-dialog-actions>

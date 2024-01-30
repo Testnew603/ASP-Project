@@ -45,7 +45,13 @@
     img {
     max-width: 100%;
     height: 100%;    
-    }
+    }    
+} 
+
+.profile-change-button {
+    display: flex;
+    justify-content: center;
+    padding: 10px;    
 }
 
 .action-panel {
