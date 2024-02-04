@@ -16,10 +16,14 @@ import { EditStudentComponent } from './admin/student/edit-student/edit-student.
 import { ViewHrComponent } from './admin/hr/view-hr/view-hr.component';
 import { ViewTrainerComponent } from './admin/trainer/view-trainer/view-trainer.component';
 import { ViewReviewerComponent } from './admin/reviewer/view-reviewer/view-reviewer.component';
+import { ViewAdvisorDetailComponent } from './admin/advisor/view-advisor-detail/view-advisor-detail.component';
+import { AddAdvisorComponent } from './admin/advisor/add-advisor/add-advisor.component';
+import { FileUploadComponent } from './shared/file-upload/file-upload.component';
 
 
 export const routes: Routes = [
     {path: "register", component: RegisterComponent},
+    {path: "add-advisor", component: AddAdvisorComponent},
 
     {path: "student-login", component: StudentLoginComponent},     
     {path: "advisor-login", component: AdvisorLoginComponent},
@@ -31,6 +35,7 @@ export const routes: Routes = [
 
     {path: "home", component: RegisterComponent},
     {path: "profile", component: ProfileComponent},
+    {path: "upload", component: FileUploadComponent},
     
     {path: "view-students", component: ViewStudentsComponent}, 
     {path: "view-advisors", component: ViewAdvisorsComponent},
@@ -39,6 +44,7 @@ export const routes: Routes = [
     {path: "view-reviewer", component: ViewReviewerComponent},        
     
     {path: "student-detail", component: ViewStudentDetailComponent},
+    {path: "advisor-detail", component: ViewAdvisorDetailComponent},
     {path: "edit-detail", component: EditStudentComponent},
     {path: "view-documents", component: ViewDocumentsComponent},
     {path: "**", component: PageNotFoundComponent},

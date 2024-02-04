@@ -1,1 +1,104 @@
-<button mat-button (click)="openDialog()">Open dialog</button>
+<h2 mat-dialog-title>Edit Student Details</h2>
+<mat-dialog-content class="mat-typography">
+  <h3>Develop across all platforms</h3>
+
+  <form [formGroup]="studentForm" (ngSubmit)="updateData()">
+  <mat-card>
+    <mat-grid-list cols="2" rowHeight="100px" gutterSize="10px">
+      <mat-grid-tile>
+        <mat-form-field color="accent">
+          <mat-label>First Name</mat-label>
+          <input matInput formControlName="firstName" />
+          <mat-error>Required Field!</mat-error>
+        </mat-form-field>
+      </mat-grid-tile>
+
+      <mat-grid-tile>
+        <mat-form-field color="accent">
+          <mat-label>Last Name</mat-label>
+          <input matInput formControlName="lastName"/>
+          <mat-error>Required Field!</mat-error>
+        </mat-form-field>
+      </mat-grid-tile>
+
+      <mat-grid-tile>
+        <mat-form-field color="accent">
+          <mat-label>Date of Birth</mat-label>
+          <input matInput type="date" formControlName="birthDate" />
+          <mat-error>Required Field!</mat-error>
+        </mat-form-field>
+      </mat-grid-tile>
+
+      <mat-grid-tile>
+        <mat-radio-group aria-label="Gender" formControlName="gender">
+          <mat-radio-button value="male"> Male</mat-radio-button>
+          <mat-radio-button value="female"> Female</mat-radio-button>
+        </mat-radio-group>
+      </mat-grid-tile>
+
+      <mat-grid-tile>
+        <mat-form-field color="accent">
+          <mat-label>Email</mat-label>
+          <input matInput formControlName="email"/>
+          <mat-error>Required Field!</mat-error>
+        </mat-form-field>
+      </mat-grid-tile>
+
+      <mat-grid-tile>
+        <mat-form-field color="accent">
+          <mat-label>Mobile</mat-label>
+          <input matInput formControlName="mobile"/>
+          <mat-error>Required Field!</mat-error>
+        </mat-form-field>
+      </mat-grid-tile>
+
+      <mat-grid-tile colspan="2">
+        <mat-form-field color="accent">
+          <mat-label>Full Address</mat-label>
+          <textarea matInput placeholder="residencial address..." formControlName="address"></textarea>
+          <mat-error>Required Field!</mat-error>
+        </mat-form-field>
+      </mat-grid-tile>
+
+      <mat-grid-tile>
+        <mat-form-field color="accent">
+          <mat-label> Qualification </mat-label>
+          <mat-select [compareWith]="compareObjects" disableOptionCentering formControlName="qualification">            
+            <mat-option value="option1"> {{ this.studentForm.value.qualification }} </mat-option>
+            @for(qualification of educationOption; track qualification) {
+              <mat-option value="qualification"> {{ qualification }} </mat-option>
+            }            
+          </mat-select>
+          <mat-error>Required Field!</mat-error>
+        </mat-form-field>
+      </mat-grid-tile>
+
+      <mat-grid-tile>
+        <mat-form-field color="accent">
+          <mat-label>Domain</mat-label>
+          <mat-select [compareWith]="compareDomain" disableOptionCentering formControlName="domainId">
+            <mat-option value="option1"> {{ this.studentForm.value.domainId }} </mat-option> 
+            @for(domain of domainName; track domain.id) {
+              <mat-option value="domain"> {{ domain.subDomain }} </mat-option>
+            } 
+          </mat-select>
+          <mat-error>Required Field!</mat-error>
+        </mat-form-field>
+      </mat-grid-tile>    
+
+    </mat-grid-list>
+  </mat-card> 
+</form>
+  
+
+  <p>
+    An app's components typically define many views, arranged hierarchically.
+    Angular provides the Router service to help you define navigation paths
+    among views. The router provides sophisticated in-browser navigational
+    capabilities.
+  </p>
+</mat-dialog-content> 
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Cancel</button>
+  <button mat-button mat-dialog-close (click)="updateData()">Update</button>
+</mat-dialog-actions>

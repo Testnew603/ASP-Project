@@ -1,8 +1,8 @@
-import { HttpClient, HttpErrorResponse, HttpHeaders, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpEvent, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { Observable, Subject, catchError, map, throwError } from 'rxjs';
-import { Admin, Advisor, Domain, ResponseMessages, SpecializedIn, StaffStatus, Status, StudentDetails, TokenData, Trainer } from '../../models/model';
+import { Admin, Advisor, Domain, ResponseMessages, SpecializedIn, StaffStatus, Status, StudentDetails, TokenData, Trainer, UpdateProfile } from '../../models/model';
 
 @Injectable({
   providedIn: 'root'
@@ -227,16 +227,70 @@ export class ApiService {
   getAdvisorList() {
     return this.http.get<Advisor[]>(this.baseUrl + 'Advisor/AdvisorList');
   }
-
   
   // get advisor by ID
   getAdvisorById(id: number): Observable<any> {
-    let params = new HttpParams().append('id', String(id));
-
+    let params = new HttpParams().append('Id', String(id));             
     return this.http.get<any>(`${this.baseUrl}Advisor/GetAdvisorById`, { params: params })
       .pipe(
         catchError(this.handleError)
       );
+  }
+
+  //add advisor
+  addNewAdvisor(advisordata: any, file: any, doc: any) {   
+    let profileToUpload = <File>file;
+    let documentToUpload = <File>doc;    
+
+    const formData = new FormData();  
+    Object.keys(advisordata).forEach(key => {
+      formData.append(key, advisordata[key]);
+  });
+
+    formData.append('imageFile', profileToUpload, profileToUpload.name);
+    formData.append('docFile', documentToUpload, documentToUpload.name);
+
+    return this.http.post(this.baseUrl + 'Advisor/AddAdvisor', formData, { responseType: 'text' })
+      .subscribe(
+        (data) => {
+          console.log(data);
+        },
+        (error) => {
+          console.error(error);
+        }
+      );
+}
+
+  upload(files: any): Observable<HttpEvent<any>> {
+    let fileToUpload = <File>files[0];
+    const formData = new FormData();
+    formData.append('file', fileToUpload, fileToUpload.name);
+
+    return this.http.post(this.baseUrl + 'Advisor/Upload', formData, { reportProgress: true, observe: 'events' });
+  }
+
+   //update advisor profile by id
+   updateAdvisorProfile(advisorId: number, file: File): Observable<any> {   
+    const formData = new FormData();
+    formData.append('Id', advisorId.toString());
+    formData.append('Profile', file, file.name);    
+    
+    return this.http.put(this.baseUrl + 'Advisor/UpdateAdvisorProfile', formData).pipe(
+      catchError(this.handleError) 
+    ); 
+  }
+ 
+  //update advisor by id
+  updateAdvisor(advisor: Omit<Advisor, 'password' | 'profile' | 'documents' | 'role' >) {                 
+    return this.http.put(this.baseUrl + 'Advisor/UpdateAdvisor', advisor)
+  }
+
+   //update advisor status by id
+   updateAdvisorStatus(advisor: Pick<Advisor, 'id' | 'status'>) {  
+    return this.http.put(this.baseUrl + 'Advisor/UpdateAdvisorStatus', advisor).subscribe(
+      (data) => { console.log(data);
+       }
+    )
   }
 
   // ---------------------------------HRMANAGER SECTION-----------------------------------------//  

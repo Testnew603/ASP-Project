@@ -3,6 +3,7 @@ import { SignalService } from '../../../shared/services/signal.service';
 import { MatDialog } from '@angular/material/dialog';
 import { ApiService } from '../../../shared/services/api.service';
 import { Router } from '@angular/router';
+import { UpdateProfile } from '../../../models/model';
 
 @Component({
   selector: 'image-viewer',
@@ -12,8 +13,7 @@ import { Router } from '@angular/router';
 export class ImageViewerComponent implements OnInit {
 
   imageURL = "";
-  imageName: string | File = '';
-  name = "";
+  imageName: string | File = '';  
 
   constructor(
     private _signalService: SignalService,
@@ -23,7 +23,7 @@ export class ImageViewerComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.imageURL = this._signalService.getImagePath();     
+    this.imageURL = this._signalService.getImagePath();          
   }
 
   closeDialog() {
@@ -38,11 +38,15 @@ export class ImageViewerComponent implements OnInit {
 }
 
   updateProfile() {
-    this.imageName = this._signalService.getImageName();   
-    const a = this._signalService.getData();
+    this.imageName = this._signalService.getImageName();           
+    
+    const user = this._signalService.getData();
+    const role = this._signalService.getUserRole();  
+    
+    if(role === 'STUDENT') {
 
-    if (typeof a === 'object' && a !== null) {       
-      this._apiService.updateProfile(Number(a.id), this.imageName).subscribe(
+    if (typeof user === 'object' && user !== null) {       
+      this._apiService.updateProfile(Number(user.id), this.imageName).subscribe(
         response => {
           console.log('Profile updated successfully:', response);
           this.reloadCurrentRoute();
@@ -53,6 +57,21 @@ export class ImageViewerComponent implements OnInit {
         }
       );
     }
+  } else if(role === 'ADVISOR') {
+    if (typeof user === 'object' && user !== null) {                       
+         
+      this._apiService.updateAdvisorProfile(Number(user.id), this.imageName).subscribe( 
+        response => {
+          console.log('Profile updated successfully:', response);
+          this.reloadCurrentRoute();
+        this.closeDialog();
+        },
+        error => {
+          console.error('Error updating profile:', error);          
+        }
+      );
+    }
+  }
   } 
 
 

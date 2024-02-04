@@ -10,12 +10,14 @@ export class SignalService {
 
   message: string = "no signal";
   uploadprofile?: File;
+
   private data = signal<any>(this.message);
   private imagepath = signal<string>(this.message);
   private file = signal<File>(this.uploadprofile!);
+  private role = signal<string>(this.message);
 
-  setData(userid: any) { 
-    this.data.set(userid);
+  setData(user: any) { 
+    this.data.set(user); 
   }
   getData() { 
     return this.data();
@@ -33,6 +35,13 @@ export class SignalService {
   }
   getImageName() { 
     return this.file();
+  }
+
+  setUserRole(role: string) {
+    this.role.set(role)
+  }
+  getUserRole() {
+    return this.role();
   }
 
 }

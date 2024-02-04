@@ -1,11 +1,12 @@
-import { Component, OnInit, Type } from '@angular/core';
-import { ResponseMessages, Status, StudentDetails } from '../../models/model';
+import { Component, OnInit } from '@angular/core';
+import { Status, StudentDetails } from '../../models/model';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ApiService } from '../../shared/services/api.service';
 import { Router } from '@angular/router';
 import { SignalService } from '../../shared/services/signal.service';
 import { MatDialog } from '@angular/material/dialog';
 import { ImageViewerComponent } from '../student/image-viewer/image-viewer.component';
+import { EditStudentComponent } from '../student/edit-student/edit-student.component';
 
 @Component({
   selector: 'view-student-detail',
@@ -28,7 +29,7 @@ export class ViewStudentDetailComponent implements OnInit {
     private _snackBar: MatSnackBar,
     private _router: Router,
     private _signalService: SignalService,
-    public dialog: MatDialog
+    public dialog: MatDialog,
   ) {
     for (let status of Object.values(Status).filter(x => typeof x === 'string')) {
       this.statusArray.push(status.toString());
@@ -62,8 +63,8 @@ export class ViewStudentDetailComponent implements OnInit {
     if (typeof a === 'object' && a !== null) {
       this._apiService.getStudentById(a.id).subscribe(
         (data) => {
-          this.students.push(data.result);
-
+          this.students.push(data.result);    
+          
           this._apiService.getDomainById(data.result.domainId).subscribe(
             (x) => {
               for (let field of this.students) {
@@ -79,16 +80,18 @@ export class ViewStudentDetailComponent implements OnInit {
   }
 
   getStudentStatus(input: Status) {
-    return Status[input];
+    return Status[input]; 
   }
 
   editStudent() {
-    this._router.navigateByUrl('edit-detail');
+      const dialogRef = this.dialog.open(EditStudentComponent);
+  
+      dialogRef.afterClosed().subscribe(result => {
+        console.log(`Dialog result: ${result}`);
+      });
   }
 
-
   selectFile(event: any) {
-    var name = '';
     const file: File = event.target.files[0];
     this.selectedFile = file ? file.name : '';
     if (this.selectedFile) {
@@ -102,16 +105,7 @@ export class ViewStudentDetailComponent implements OnInit {
     }
 
     var imagename = event.target.files[0];
-    this._signalService.setImageName(imagename!);
-
-    this._apiService.getStudentProfilePath().subscribe(
-      (response) => {
-        name = response.result + imagename;
-      },
-      (error) => {
-        console.error("Error occurred:", error);
-      }
-    );
+    this._signalService.setImageName(imagename!);    
   }
 
 }

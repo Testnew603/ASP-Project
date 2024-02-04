@@ -1,8 +1,8 @@
-<h2 mat-dialog-title>Edit Student Details</h2>
+<h2 mat-dialog-title>Edit Advisor Details</h2>
 <mat-dialog-content class="mat-typography">
   <h3>Develop across all platforms</h3>
 
-  <form [formGroup]="studentForm" (ngSubmit)="updateData()">
+  <form [formGroup]="advisorForm" (ngSubmit)="updateData()">
   <mat-card>
     <mat-grid-list cols="2" rowHeight="100px" gutterSize="10px">
       <mat-grid-tile>
@@ -41,7 +41,7 @@
           <mat-label>Email</mat-label>
           <input matInput formControlName="email"/>
           <mat-error>Required Field!</mat-error>
-        </mat-form-field>
+        </mat-form-field> 
       </mat-grid-tile>
 
       <mat-grid-tile>
@@ -52,21 +52,13 @@
         </mat-form-field>
       </mat-grid-tile>
 
-      <mat-grid-tile colspan="2">
-        <mat-form-field color="accent">
-          <mat-label>Full Address</mat-label>
-          <textarea matInput placeholder="residencial address..." formControlName="address"></textarea>
-          <mat-error>Required Field!</mat-error>
-        </mat-form-field>
-      </mat-grid-tile>
-
       <mat-grid-tile>
         <mat-form-field color="accent">
           <mat-label> Qualification </mat-label>
           <mat-select [compareWith]="compareObjects" disableOptionCentering formControlName="qualification">            
-            <mat-option value="option1"> {{ this.studentForm.value.qualification }} </mat-option>
+            <mat-option value="option1"> {{ this.advisorForm.value.qualification }} </mat-option>
             @for(qualification of educationOption; track qualification) {
-              <mat-option value="qualification"> {{ qualification }} </mat-option>
+              <mat-option [value]="qualification"> {{ qualification }} </mat-option>
             }            
           </mat-select>
           <mat-error>Required Field!</mat-error>
@@ -77,46 +69,14 @@
         <mat-form-field color="accent">
           <mat-label>Domain</mat-label>
           <mat-select [compareWith]="compareDomain" disableOptionCentering formControlName="domainId">
-            <mat-option value="option1"> {{ this.studentForm.value.domainId }} </mat-option> 
+            <mat-option value="option1"> {{ this.advisorForm.value.domainId }} </mat-option> 
             @for(domain of domainName; track domain.id) {
               <mat-option value="domain"> {{ domain.subDomain }} </mat-option>
             } 
           </mat-select>
           <mat-error>Required Field!</mat-error>
         </mat-form-field>
-      </mat-grid-tile>
-
-      <!-- <mat-grid-tile>
-        <mat-form-field color="accent" class="columns">
-            <mat-label>Upload document</mat-label>                                   
-            <mat-form-field class="columns">
-              @if (selectedFile) {
-                <mat-label>{{selectedFile.item(0)?.name}}</mat-label>
-              } @else {                
-                  <mat-label #newFile>{{ this.studentForm.value.profile }}</mat-label>              
-              }
-                            
-              <input matInput disabled>
-              <button mat-icon-button matSuffix (click)="fileInput.click()">
-                  <mat-icon>attach_file</mat-icon>
-              </button>
-              <input hidden (change)="selectFile($event)" #fileInput type="file" id="file">
-          </mat-form-field> 
-                             
-            <input hidden type="file" id="file" />
-        </mat-form-field>
-    </mat-grid-tile>   -->
-
-    <!-- <mat-grid-tile>
-      <mat-form-field color="accent" class="columns">
-          <mat-label>Upload profile</mat-label>
-          <input matInput readonly formControlName="profile"/>
-          <button mat-icon-button matSuffix >
-              <mat-icon>attach_file</mat-icon>
-          </button>
-          <input hidden type="file" id="file"/>
-      </mat-form-field>
-  </mat-grid-tile> -->
+      </mat-grid-tile>    
 
     </mat-grid-list>
   </mat-card> 

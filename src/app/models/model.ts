@@ -32,16 +32,16 @@
 // ---------------------------------ADVISOR SECTION-----------------------------------------//
     export interface Advisor {
         id: number;
-        firstName :string;
-        lastName :string;
-        birthDate :string;
-        gender :string;
-        email :string;
-        mobile :string;
-        qualification :string;
-        password :string;
-        profile :string;
-        documents :string;
+        firstName: string;
+        lastName: string;
+        birthDate: string;
+        gender: string;
+        email: string;
+        mobile: string;
+        qualification: string;
+        password: string;
+        profile: string;
+        documents: string;
         domainId: number;
         status: StaffStatus;
         role: string;
@@ -135,6 +135,11 @@
         id: number;
         mainDomain: string;
         subDomain: string;
+      }
+
+      export interface UpdateProfile {
+        id: number;
+        profile: File
       }
 
     export enum StaffStatus{    

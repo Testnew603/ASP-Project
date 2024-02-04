@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { Advisor, Domain, StaffStatus, Status } from '../../models/model';
 import { ApiService } from '../../shared/services/api.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { SignalService } from '../../shared/services/signal.service';
 import { MatDialog } from '@angular/material/dialog';
 
@@ -13,7 +13,7 @@ import { MatDialog } from '@angular/material/dialog';
 })
 export class ViewAdvisorsComponent {
 
-  columns: string[] = ['UserId', 'Name', 'Email', 'Domain', 'Status', 'AdvisorAction'];
+  columns: string[] = ['UserId', 'Name', 'Email', 'Domain', 'AdvisorStatus', 'AdvisorAction'];
   advisor: Advisor[] = [];
   domains: Domain[] = [];
 
@@ -42,7 +42,7 @@ export class ViewAdvisorsComponent {
   }
   
   addadvisor() {
-    
+    this._router.navigateByUrl('/add-advisor');
   }
 
 }

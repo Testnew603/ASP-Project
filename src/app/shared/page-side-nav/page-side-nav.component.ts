@@ -23,7 +23,6 @@ export class PageSideNavComponent implements OnInit {
   constructor(
     private _apiService: ApiService,
     private _router: Router,
-    private _act: ActivatedRoute
     ) {
     this.navItems = [
       {value: 'View Students', link: 'view-students'},
@@ -81,7 +80,7 @@ export class PageSideNavComponent implements OnInit {
                 { value: 'View Advisors', link: '/view-advisors' },
                 { value: 'View HR', link: '/view-hr' },
                 { value: 'View Trainers', link: '/view-trainer' },
-                { value: 'View Reviewers', link: '/view-reviewer' },
+                { value: 'View Reviewers', link: '/upload' },
               ];
             }
           }
